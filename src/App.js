@@ -19,7 +19,6 @@ const App = ({ userIsAuthenticated }) => {
 
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     userIsAuthenticated: state.authReducer.userIsAuthenticated
   };

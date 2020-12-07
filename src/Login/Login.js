@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { signIn } from "../store/action";
 
-const Login = ({signInHandler}) => {
+const Login = ({ signInHandler, authError, isLoading }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -11,9 +11,12 @@ const Login = ({signInHandler}) => {
     // }
 
     function handleSubmit(event) {
-        
+
         event.preventDefault();
         signInHandler({ email, password });
+        setEmail("");
+        setPassword("");
+
     }
 
 
@@ -27,10 +30,22 @@ const Login = ({signInHandler}) => {
                 <input name="password" onChange={e => setPassword(e.target.value)} type="password" />
 
                 <button type="submit">Login</button>
+
+                {isLoading ? <div>Is Loading....</div> : null}
+
+                {authError ? <div>{authError.message}</div> : null}
             </form>
         </div>
     );
 }
+
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        authError: state.authReducer.authError,
+        isLoading: state.authReducer.isLoading
+    };
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -39,4 +54,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

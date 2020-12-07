@@ -18,9 +18,10 @@ const authReducer = (state = initialState, action) => {
                 isLoading: true
             }
 
-        case "LOGIN_ERROR":
+        case "LOGIN_FAILED":
             return {
                 ...state,
+                isLoading: false,
                 authError: action.payload
             }
         case "LOGIN_SUCCESS":
