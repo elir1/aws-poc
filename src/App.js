@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Amplify from 'aws-amplify';
+import awsconfig from './aws-exports';
+import { connect } from "react-redux";
 
-function App() {
+import Routes from "./Routes";
+
+
+Amplify.configure(awsconfig);
+
+const App = ({ userIsAuthenticated }) => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes />
     </div>
-  );
+  )
 }
 
-export default App;
+
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    userIsAuthenticated: state.authReducer.userIsAuthenticated
+  };
+};
+
+export default connect(mapStateToProps)(App);

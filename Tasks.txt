@@ -1,0 +1,16 @@
+---- Authentication  POC -----
+[x] - Create two stages - dev & develiii
+[x] - Create pool user for develiii
+[x] - Register and make sure the user is logged and verified in the relevant pool
+[] - Redirect to the APP after successfull login
+[] - Hanlde sign out and redirect to login component
+[] - Authenticated and Unauthenticated routes logic
+[] - Add social provider login / register [ Facebook / Google]
+
+
+
+--- API ---
+
+[] - Add API feature with amplify
+[] - Try to call lambda with user 
+
