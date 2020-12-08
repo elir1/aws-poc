@@ -18,11 +18,6 @@
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false,
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-demopoc-develiii-140125-deployment/amplify-cfn-templates/auth/demopoc0a1fa130-cloudformation-template.yml",
-        "logicalId": "authdemopoc0a1fa130"
-      },
-      "lastPushTimeStamp": "2020-12-06T12:10:33.069Z",
       "output": {
         "AppClientSecret": "vm7n6p9n2ji06goek4mfbf4d5r1tsk75n91gbq5cgqi7arnc698",
         "UserPoolId": "us-east-1_YQJEs0F3d",
@@ -30,9 +25,16 @@
         "AppClientID": "597043iel6akih8abimjpef6u5",
         "IdentityPoolId": "us-east-1:5183f198-4496-4cf3-bd13-cea19db18900",
         "IdentityPoolName": "demopoc0a1fa130_identitypool_0a1fa130__develiii",
-        "UserPoolName": "demopoc0a1fa130_userpool_0a1fa130"
+        "UserPoolName": "demopoc0a1fa130_userpool_0a1fa130",
+        "HostedUIDomain": "demopocb71d19d6-b71d19d6-develiii",
+        "OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/login/\"]}"
       },
-      "lastPushDirHash": "6JLeVKSXuq35GxcbeKmtNxc60ek="
+      "lastPushTimeStamp": "2020-12-08T07:57:30.264Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-demopoc-develiii-140125-deployment/amplify-cfn-templates/auth/demopoc0a1fa130-cloudformation-template.yml",
+        "logicalId": "authdemopoc0a1fa130"
+      },
+      "lastPushDirHash": "/vqGIKh254PJpHx26W86Vi0n8gc="
     }
   }
 }

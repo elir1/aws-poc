@@ -14,7 +14,7 @@ const authReducer = (state = initialState, action) => {
         case "IS_LOADING":
             return {
                 ...state,
-                authError:null,
+                authError: null,
                 isLoading: true
             }
 
@@ -31,6 +31,22 @@ const authReducer = (state = initialState, action) => {
                 userIsAuthenticated: true,
                 isLoading: false,
                 user: action.payload
+            }
+
+        case "LOGOUT_SUCCESS":
+            return {
+                ...state,
+                authError: null,
+                userIsAuthenticated: false,
+                isLoading: false,
+                user: null
+            }
+
+        case "LOGOUT_FAILED":
+            return {
+                ...state,
+                isLoading: false,
+                authError: action.payload
             }
         default:
             return state;
