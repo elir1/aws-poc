@@ -1,18 +1,24 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 import { Link } from "react-router-dom";
+import {
+    FormGroup,
+    FormControl,
+    FormLabel,
+    Button
+} from "react-bootstrap";
+
 import { useFormFields } from "../useFormFields";
 
-const ResetPassword = () => {
+import "./ResetPassword.css";
 
+export default function ResetPassword() {
     const [fields, handleFieldChange] = useFormFields({
         code: "",
         email: "",
         password: "",
         confirmPassword: "",
     });
-
-
     const [codeSent, setCodeSent] = useState(false);
     const [confirmed, setConfirmed] = useState(false);
     const [isConfirming, setIsConfirming] = useState(false);
@@ -65,41 +71,70 @@ const ResetPassword = () => {
     function renderRequestCodeForm() {
         return (
             <form onSubmit={handleSendCodeClick}>
-                <label>Email:</label>
-                <input defaultValue={fields.email} onChange={handleFieldChange} name="email" type="email" />
-                <button>Send Confirmation</button>
+                <FormGroup bssize="large" controlId="email">
+                    <FormLabel>Email</FormLabel>
+                    <FormControl
+                        autoFocus
+                        type="email"
+                        value={fields.email}
+                        onChange={handleFieldChange}
+                    />
+                </FormGroup>
+                 <Button block size="lg" type="submit" disabled={!validateCodeForm()}>
+                 Send Confirmation
+                </Button>
             </form>
         );
     }
 
-
     function renderConfirmationForm() {
         return (
             <form onSubmit={handleConfirmClick}>
-                <label>Code:</label>
-                <input type="tel" onChange={handleFieldChange} name="code"  defaultValue={fields.code} />
+                <FormGroup bssize="large" controlId="code">
+                    <FormLabel>Confirmation Code</FormLabel>
+                    <FormControl
+                        autoFocus
+                        type="tel"
+                        value={fields.code}
+                        onChange={handleFieldChange}
+                    />
+                    {/* <HelpBlock>
+            Please check your email ({fields.email}) for the confirmation code.
+          </HelpBlock> */}
+                </FormGroup>
+                <hr />
+                <FormGroup bssize="large" controlId="password">
+                    <FormLabel>New Password</FormLabel>
+                    <FormControl
+                        type="password"
+                        value={fields.password}
+                        onChange={handleFieldChange}
+                    />
+                </FormGroup>
+                <FormGroup bssize="large" controlId="confirmPassword">
+                    <FormLabel>Confirm Password</FormLabel>
+                    <FormControl
+                        type="password"
+                        value={fields.confirmPassword}
+                        onChange={handleFieldChange}
+                    />
+                </FormGroup>
 
-                <label>New password</label>
-                <input type="password" onChange={handleFieldChange} name="password"  defaultValue={fields.password} />
-
-                <label>Confirm password</label>
-                <input type="password" onChange={handleFieldChange} name="confirmPassword" defaultValue={fields.confirmPassword} />
-
-                <button>Confirm</button>
-
+                <Button block size="lg" type="submit" disabled={!validateResetForm()}>
+                    Confirm
+                </Button>
             </form>
-        )
+        );
     }
-
 
     function renderSuccessMessage() {
         return (
-            <div>
+            <div className="success">
                 <p>Your password has been reset.</p>
                 <p>
                     <Link to="/login">
                         Click here to login with your new credentials.
-              </Link>
+                 </Link>
                 </p>
             </div>
         );
@@ -114,8 +149,4 @@ const ResetPassword = () => {
                     : renderSuccessMessage()}
         </div>
     );
-
 }
-
-
-export default ResetPassword;
