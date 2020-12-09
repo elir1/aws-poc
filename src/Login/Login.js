@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { signIn } from "../store/action";
+import { Link } from "react-router-dom";
 
 const Login = ({ signInHandler, authError, isLoading }) => {
     const [email, setEmail] = useState("");
@@ -25,17 +26,13 @@ const Login = ({ signInHandler, authError, isLoading }) => {
             <form onSubmit={handleSubmit}>
                 <label>Email</label>
                 <input name="email" onChange={e => setEmail(e.target.value)} type="email" />
-
                 <label>Password</label>
                 <input name="password" onChange={e => setPassword(e.target.value)} type="password" />
-
                 <button type="submit">Login</button>
-
-
                 {isLoading ? <div>Is Loading....</div> : null}
-
                 {authError ? <div>{authError.message}</div> : null}
             </form>
+            <Link to="/login/reset">Forgot password?</Link>
         </div>
     );
 }
