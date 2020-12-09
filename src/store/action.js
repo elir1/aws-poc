@@ -25,18 +25,6 @@ export const signIn = (credentials) => async (dispatch) => {
     }
 }
 
-export const isUserLoggedIn = () => async (dispatch) => {
-    dispatch({ type: "IS_LOADING" });
-
-    try {
-        const currentAuthenticatedUserResponse = await Auth.currentAuthenticatedUser();
-        dispatch({ type: "LOGIN_SUCCESS", payload: currentAuthenticatedUserResponse });
-    }
-    catch (err) {
-        dispatch({ type: "LOGIN_FAILED", payload: err });
-    }
-}
-
 export const setUserLogged = (user) => {
     return {
         type: "SET_USER_LOGGED",

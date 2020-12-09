@@ -5,21 +5,17 @@ import awsconfig from './aws-exports';
 import { connect } from "react-redux";
 import { Auth } from "@aws-amplify/auth";
 
-import { isUserLoggedIn, setUserLogged } from "./store/action";
+import { setUserLogged } from "./store/action";
 
 import Routes from "./Routes";
 
 
 Amplify.configure(awsconfig);
 
-const App = ({ isUserLoggedInHandler, setUserLoggedHandler }) => {
+const App = ({ setUserLoggedHandler }) => {
 
-  const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
 
-  // useEffect(() => {
-  //   isUserLoggedInHandler();
-  // }, [isUserLoggedInHandler]);
 
   useEffect(() => {
     onLoad();
@@ -28,7 +24,6 @@ const App = ({ isUserLoggedInHandler, setUserLoggedHandler }) => {
   async function onLoad() {
     try {
       const user = await Auth.currentAuthenticatedUser();
-      userHasAuthenticated(true);
       setUserLoggedHandler(user);
     }
     catch(e) {
@@ -46,15 +41,8 @@ const App = ({ isUserLoggedInHandler, setUserLoggedHandler }) => {
 }
 
 
-// const mapStateToProps = (state) => {
-//   return {
-//     userIsAuthenticated: state.authReducer.userIsAuthenticated
-//   };
-// };
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    isUserLoggedInHandler: () => dispatch(isUserLoggedIn()),
     setUserLoggedHandler: (user) => dispatch(setUserLogged(user))
   }
 }

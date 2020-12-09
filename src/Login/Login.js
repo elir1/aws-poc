@@ -41,7 +41,6 @@ const Login = ({ signInHandler, authError, isLoading }) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         authError: state.authReducer.authError,
         isLoading: state.authReducer.isLoading
