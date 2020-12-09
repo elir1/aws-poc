@@ -2,8 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { Route, Redirect, useLocation } from "react-router-dom";
 
-
-
 const ProtectedRoute = ({ userIsAuthenticated, children, ...rest }) => {
     console.log('Protected route - user', userIsAuthenticated);
     const { pathname, search } = useLocation();

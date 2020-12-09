@@ -5,6 +5,7 @@ import NotFound from "./NotFound/NotFound";
 import Login from "./Login/Login";
 
 import ProtectedRoute from "./ProtectedRoute";
+import PublicRoute from "./PublicRoute";
 
 const Routes = () => {
     return (
@@ -13,9 +14,9 @@ const Routes = () => {
                 <Home />
             </ProtectedRoute>
 
-            <Route exact path="/login">
+            <PublicRoute exact path="/login">
                 <Login />
-            </Route>
+            </PublicRoute>
 
             <Route>
                 <NotFound />
