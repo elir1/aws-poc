@@ -18,6 +18,13 @@ const authReducer = (state = initialState, action) => {
                 isLoading: true
             }
 
+        case "SET_USER_LOGGED":
+            return {
+                ...state,
+                userIsAuthenticated: true,
+                user: action.payload
+            }
+
         case "LOGIN_FAILED":
             return {
                 ...state,

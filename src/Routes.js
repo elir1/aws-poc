@@ -4,12 +4,14 @@ import Home from "./Home/Home";
 import NotFound from "./NotFound/NotFound";
 import Login from "./Login/Login";
 
+import ProtectedRoute from "./ProtectedRoute";
+
 const Routes = () => {
     return (
         <Switch>
-            <Route exact path="/">
+            <ProtectedRoute exact path="/">
                 <Home />
-            </Route>
+            </ProtectedRoute>
 
             <Route exact path="/login">
                 <Login />

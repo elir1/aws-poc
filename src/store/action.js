@@ -37,6 +37,13 @@ export const isUserLoggedIn = () => async (dispatch) => {
     }
 }
 
+export const setUserLogged = (user) => {
+    return {
+        type: "SET_USER_LOGGED",
+        payload: user
+    }
+}
+
 
 export const signOut = () => async (dispatch) => {
     dispatch({ type: "IS_LOADING" });

@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import { signOut } from "../store/action";
 
 
-const Home = ({ signOutHandler }) => {
+const Home = ({ signOutHandler, userEmail }) => {
     return (
         <div className="Home">
-            <h2>Hello [name]</h2>
+            <h2>Hello {userEmail}</h2>
             <Counter />
             <button onClick={() => signOutHandler()}>Signout</button>
         </div>
@@ -16,7 +16,9 @@ const Home = ({ signOutHandler }) => {
 
 const mapStateToProps = (state) => {
     console.log(state);
-    return {}
+    return {
+        userEmail: state.authReducer.user.attributes.email
+    }
 };
 
 const mapDispatchToProps = (dispatch) => {

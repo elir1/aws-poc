@@ -7,6 +7,7 @@ import Amplify from 'aws-amplify';
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk';
+import { createLogger } from "redux-logger";
 
 import { BrowserRouter as Router } from 'react-router-dom';
 import awsconfig from './aws-exports';
@@ -17,9 +18,10 @@ import App from './App';
 import './index.css';
 
 Amplify.configure(awsconfig);
-const middlewares = [thunk];
+const logger = createLogger();
+const middlewares = [thunk, logger];
 
-const store = createStore(rootReducer,  applyMiddleware(...middlewares));
+const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
 
 ReactDOM.render(
