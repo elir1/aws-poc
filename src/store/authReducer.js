@@ -1,9 +1,9 @@
 const initialState = {
     isLoading: false,
-    // userIsAuthenticating: true,
+    userIsAuthenticating: true,
     userIsAuthenticated: false,
     authError: null,
-    user: null
+    user: null,
 }
 
 
@@ -18,10 +18,17 @@ const authReducer = (state = initialState, action) => {
                 isLoading: true
             }
 
+        case "SET_AUTHENTICATING":
+            return {
+                ...state,
+                userIsAuthenticating: false
+            }
+
         case "SET_USER_LOGGED":
             return {
                 ...state,
                 userIsAuthenticated: true,
+                userIsAuthenticating: false,
                 user: action.payload
             }
 
@@ -29,12 +36,16 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                authError: action.payload
+                authError: action.payload,
+                userIsAuthenticating: false
             }
+
+
         case "LOGIN_SUCCESS":
             return {
                 ...state,
                 authError: null,
+                userIsAuthenticating: false,
                 userIsAuthenticated: true,
                 isLoading: false,
                 user: action.payload
@@ -44,6 +55,7 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 authError: null,
+                userIsAuthenticating: false,
                 userIsAuthenticated: false,
                 isLoading: false,
                 user: null

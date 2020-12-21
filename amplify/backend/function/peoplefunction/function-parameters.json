@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "auth": {
+      "demopoc0a1fa130": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "function": {
+      "fetchUsersLambda": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "api": {
+      "pocApi": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "storage": {
+      "people": [
+        "create",
+        "read"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

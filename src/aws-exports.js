@@ -20,7 +20,26 @@ const awsmobile = {
         "redirectSignOut": "http://localhost:3000/login/",
         "responseType": "code"
     },
-    "federationTarget": "COGNITO_USER_POOLS"
+    "federationTarget": "COGNITO_USER_POOLS",
+    "aws_cloud_logic_custom": [
+        {
+            "name": "pocApi",
+            "endpoint": "https://3v4t9nalwg.execute-api.us-east-1.amazonaws.com/develiii",
+            "region": "us-east-1"
+        },
+        {
+            "name": "peopleapi",
+            "endpoint": "https://enegsfhy1d.execute-api.us-east-1.amazonaws.com/develiii",
+            "region": "us-east-1"
+        }
+    ],
+    "aws_dynamodb_all_tables_region": "us-east-1",
+    "aws_dynamodb_table_schemas": [
+        {
+            "tableName": "people-develiii",
+            "region": "us-east-1"
+        }
+    ]
 };
 
 

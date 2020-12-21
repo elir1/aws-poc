@@ -109,17 +109,132 @@
 							"Arn"
 						]
 					},
-					"useDefault": "defaultSocial",
+					"useDefault": "default",
 					"usernameAttributes": "email",
 					"userPoolGroupList": "",
 					"serviceName": "Cognito",
 					"dependsOn": "",
 					"hostedUI": true,
-					"hostedUIDomainName": "demopocb71d19d6-b71d19d6",
-					"authProvidersUserPool": "",
-					"hostedUIProviderMeta": "[]",
-					"oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/login/\"]}",
-					"hostedUIProviderCreds": "[]",
+					"env": "develiii"
+				}
+			}
+		},
+		"functionfetchUsersLambda": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-demopoc-develiii-140125-deployment/amplify-cfn-templates/function/fetchUsersLambda-cloudformation-template.json",
+				"Parameters": {
+					"env": "develiii"
+				}
+			}
+		},
+		"functionpeoplefunction": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-demopoc-develiii-140125-deployment/amplify-cfn-templates/function/peoplefunction-cloudformation-template.json",
+				"Parameters": {
+					"authdemopoc0a1fa130UserPoolId": {
+						"Fn::GetAtt": [
+							"authdemopoc0a1fa130",
+							"Outputs.UserPoolId"
+						]
+					},
+					"functionfetchUsersLambdaName": {
+						"Fn::GetAtt": [
+							"functionfetchUsersLambda",
+							"Outputs.Name"
+						]
+					},
+					"apipocApiApiName": {
+						"Fn::GetAtt": [
+							"apipocApi",
+							"Outputs.ApiName"
+						]
+					},
+					"apipocApiApiId": {
+						"Fn::GetAtt": [
+							"apipocApi",
+							"Outputs.ApiId"
+						]
+					},
+					"storagepeopleName": {
+						"Fn::GetAtt": [
+							"storagepeople",
+							"Outputs.Name"
+						]
+					},
+					"storagepeopleArn": {
+						"Fn::GetAtt": [
+							"storagepeople",
+							"Outputs.Arn"
+						]
+					},
+					"env": "develiii"
+				}
+			}
+		},
+		"apipocApi": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-demopoc-develiii-140125-deployment/amplify-cfn-templates/api/pocApi-cloudformation-template.json",
+				"Parameters": {
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"functionfetchUsersLambdaName": {
+						"Fn::GetAtt": [
+							"functionfetchUsersLambda",
+							"Outputs.Name"
+						]
+					},
+					"functionfetchUsersLambdaArn": {
+						"Fn::GetAtt": [
+							"functionfetchUsersLambda",
+							"Outputs.Arn"
+						]
+					},
+					"env": "develiii"
+				}
+			}
+		},
+		"apipeopleapi": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-demopoc-develiii-140125-deployment/amplify-cfn-templates/api/peopleapi-cloudformation-template.json",
+				"Parameters": {
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"functionpeoplefunctionName": {
+						"Fn::GetAtt": [
+							"functionpeoplefunction",
+							"Outputs.Name"
+						]
+					},
+					"functionpeoplefunctionArn": {
+						"Fn::GetAtt": [
+							"functionpeoplefunction",
+							"Outputs.Arn"
+						]
+					},
+					"env": "develiii"
+				}
+			}
+		},
+		"storagepeople": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-demopoc-develiii-140125-deployment/amplify-cfn-templates/storage/people-cloudformation-template.json",
+				"Parameters": {
+					"tableName": "people",
+					"partitionKeyName": "id",
+					"partitionKeyType": "S",
 					"env": "develiii"
 				}
 			}

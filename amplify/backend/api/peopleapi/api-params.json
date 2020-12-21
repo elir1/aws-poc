@@ -1,0 +1,42 @@
+{
+    "paths": [
+        {
+            "name": "/people",
+            "lambdaFunction": "peoplefunction",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/people"
+        }
+    ],
+    "resourceName": "peopleapi",
+    "apiName": "peopleapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "peoplefunction"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-demopoc-develiii-140125-authRole",
+        "unAuthRoleName": "amplify-demopoc-develiii-140125-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "peoplefunction",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
