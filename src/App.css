@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+.counter {
+  width: 150px;
+  height: 50px;
+  background-color: rgb(194, 194, 194);
+  margin: auto;
+}
+
+.counter button {
+  margin-left: 10px;
+  margin-right: 10px;
+}

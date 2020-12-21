@@ -25,13 +25,162 @@
         "AppClientID": "597043iel6akih8abimjpef6u5",
         "IdentityPoolId": "us-east-1:5183f198-4496-4cf3-bd13-cea19db18900",
         "IdentityPoolName": "demopoc0a1fa130_identitypool_0a1fa130__develiii",
-        "UserPoolName": "demopoc0a1fa130_userpool_0a1fa130"
+        "UserPoolName": "demopoc0a1fa130_userpool_0a1fa130",
+        "HostedUIDomain": "demopocb71d19d6-b71d19d6-develiii",
+        "OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/login/\"]}"
       },
-      "lastPushTimeStamp": "2020-12-07T08:25:56.178Z",
+      "lastPushTimeStamp": "2020-12-10T15:57:35.222Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-demopoc-develiii-140125-deployment/amplify-cfn-templates/auth/demopoc0a1fa130-cloudformation-template.yml",
         "logicalId": "authdemopoc0a1fa130"
-      }
+      },
+      "lastPushDirHash": "bqTE5x5eBHeN3zRVn9yDYdsyDuA="
+    }
+  },
+  "function": {
+    "fetchUsersLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2020-12-10T15:14:00.307Z",
+      "lastPackageTimeStamp": "2020-12-10T15:14:02.196Z",
+      "distZipFilename": "fetchUsersLambda-52324741755441547878-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-demopoc-develiii-140125-deployment/amplify-cfn-templates/function/fetchUsersLambda-cloudformation-template.json",
+        "logicalId": "functionfetchUsersLambda"
+      },
+      "lastPushTimeStamp": "2020-12-10T15:57:35.242Z",
+      "output": {
+        "Region": "us-east-1",
+        "Arn": "arn:aws:lambda:us-east-1:706737301067:function:fetchUsersLambda-develiii",
+        "Name": "fetchUsersLambda-develiii",
+        "LambdaExecutionRole": "demopocLambdaRoled776314e-develiii"
+      },
+      "lastPushDirHash": "9OgKxP9d7ftXCRvEdrtbi8tqYR4="
+    },
+    "peoplefunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "demopoc0a1fa130",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "fetchUsersLambda",
+          "attributes": [
+            "Name"
+          ]
+        },
+        {
+          "category": "api",
+          "resourceName": "pocApi",
+          "attributes": [
+            "ApiName",
+            "ApiId"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "people",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2020-12-10T15:56:25.457Z",
+      "lastPackageTimeStamp": "2020-12-10T15:56:26.344Z",
+      "distZipFilename": "peoplefunction-344257423166686b396d-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-demopoc-develiii-140125-deployment/amplify-cfn-templates/function/peoplefunction-cloudformation-template.json",
+        "logicalId": "functionpeoplefunction"
+      },
+      "lastPushTimeStamp": "2020-12-10T15:57:35.307Z",
+      "output": {
+        "Region": "us-east-1",
+        "Arn": "arn:aws:lambda:us-east-1:706737301067:function:peoplefunction-develiii",
+        "Name": "peoplefunction-develiii",
+        "LambdaExecutionRole": "demopocLambdaRoleabbb0960-develiii"
+      },
+      "lastPushDirHash": "wGMY436z9tBYWkP42Om/Y8YmNoU="
+    }
+  },
+  "api": {
+    "pocApi": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "fetchUsersLambda",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-demopoc-develiii-140125-deployment/amplify-cfn-templates/api/pocApi-cloudformation-template.json",
+        "logicalId": "apipocApi"
+      },
+      "lastPushTimeStamp": "2020-12-10T15:57:35.273Z",
+      "output": {
+        "ApiName": "pocApi",
+        "RootUrl": "https://3v4t9nalwg.execute-api.us-east-1.amazonaws.com/develiii",
+        "ApiId": "3v4t9nalwg"
+      },
+      "lastPushDirHash": "Y8pVumCXKYnBys34Akl7JhiKnjw="
+    },
+    "peopleapi": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "peoplefunction",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-demopoc-develiii-140125-deployment/amplify-cfn-templates/api/peopleapi-cloudformation-template.json",
+        "logicalId": "apipeopleapi"
+      },
+      "lastPushTimeStamp": "2020-12-10T15:57:35.284Z",
+      "output": {
+        "ApiName": "peopleapi",
+        "RootUrl": "https://enegsfhy1d.execute-api.us-east-1.amazonaws.com/develiii",
+        "ApiId": "enegsfhy1d"
+      },
+      "lastPushDirHash": "9tQwsEG4Yq8v9Vf7xf5I89VLWUo="
+    }
+  },
+  "storage": {
+    "people": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-demopoc-develiii-140125-deployment/amplify-cfn-templates/storage/people-cloudformation-template.json",
+        "logicalId": "storagepeople"
+      },
+      "lastPushTimeStamp": "2020-12-10T15:57:35.291Z",
+      "output": {
+        "PartitionKeyName": "id",
+        "Region": "us-east-1",
+        "Arn": "arn:aws:dynamodb:us-east-1:706737301067:table/people-develiii",
+        "StreamArn": "arn:aws:dynamodb:us-east-1:706737301067:table/people-develiii/stream/2020-12-10T15:11:27.649",
+        "PartitionKeyType": "S",
+        "Name": "people-develiii"
+      },
+      "lastPushDirHash": "G5mQrnZ0zgKmP6SosludJHoNGeE="
     }
   }
 }
